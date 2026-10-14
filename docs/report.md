@@ -64,16 +64,20 @@ $$y_{it} = \alpha_i + \gamma_t + \beta \cdot (I_i \times Post_t) + \varepsilon_{
 
 ### 3.1 跨站点：一个按「LLM 可替代性」完美排序的谱系
 
-ChatGPT 发布后 13 个月内（2022Q3 → 2023Q4），六个站点的降幅与「LLM 对该领域的可替代性」先验排序完全一致：
+ChatGPT 发布后 13 个月内（2022Q3 → 2023Q4），八个站点的降幅与「LLM 对该领域的可替代性」先验排序高度一致：
 
 | 站点 | 知识领域 | 变化 |
 |---|---|---|
 | Stack Overflow | 编程（LLM 语料最密集、答案最模板化） | **−55.6%** |
+| Salesforce | 企业级 SaaS 配置（强依赖租户环境） | **−45.4%** |
 | Ask Ubuntu | Linux 发行版配置 | −41.6% |
 | Cross Validated | 统计学 | −32.0% |
 | English L&U | 语言用法 | −30.6% |
+| Server Fault | 系统运维 | −29.8% |
 | Super User | 通用软件使用 | −26.3% |
 | Mathematics | 数学（需严格形式证明） | **−3.9%** |
+
+非数学站点的降幅为 −26.3% 至 −55.6%（均值约 −37%），而数学站点仅 −3.9%——两者相差逾 33 个百分点。
 
 以 Mathematics 为对照的双期 DiD：
 

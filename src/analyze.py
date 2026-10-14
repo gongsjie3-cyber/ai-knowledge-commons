@@ -233,19 +233,28 @@ def event_study(df: pd.DataFrame, ycol: str = "y_log", trend: str = "linear") ->
 
 
 def cross_site() -> pd.DataFrame:
-    """跨站点验证：2022Q3(处理前) vs 2023Q4(处理后)，6 个 Stack Exchange 站点。"""
-    f = PROC / "sitewide_check.csv"
+    """跨站点验证：2022Q3（处理前）vs 2023Q4（处理后）。
+
+    优先使用完整站点面板 raw_counts_sites.csv（8 站点 x 23 季度）；
+    仅在该文件缺失时回退到稀疏验证点 sitewide_check.csv
+    （后者只覆盖 SO 与 math 两个站点，图上会少画 6 条线）。
+    """
+    full = PROC / "raw_counts_sites.csv"
+    fallback = PROC / "sitewide_check.csv"
+    f = full if full.exists() else fallback
     if not f.exists():
         return pd.DataFrame()
     d = pd.read_csv(f)
     d["quarter"] = d["quarter"].astype(str)
-    w = d.pivot_table(index="site", columns="quarter", values="sitewide_questions")
+    col = "questions" if "questions" in d.columns else "sitewide_questions"
+    w = d.pivot_table(index="site", columns="quarter", values=col)
     if "2022Q3" not in w or "2023Q4" not in w:
         return pd.DataFrame()
+    w = w.reset_index()
     w["pre"] = w["2022Q3"]
     w["post"] = w["2023Q4"]
     w["pct_change"] = (w["post"] - w["pre"]) / w["pre"]
-    return w.reset_index().sort_values("pct_change")
+    return w.sort_values("pct_change")
 
 
 def main():
