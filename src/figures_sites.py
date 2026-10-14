@@ -80,6 +80,7 @@ def fig_site_trajectories():
 
     fig, ax = plt.subplots(figsize=(6.8, 4.0))
     xs = rel.sort_index().values
+    entries = []
     for s in w.columns:
         y = w[s].values / w[s].values[base_idx] * 100
         is_so = s == "stackoverflow"
@@ -87,9 +88,22 @@ def fig_site_trajectories():
         ax.plot(xs, y, lw=2.4 if is_so else (2.0 if is_math else 1.0),
                 color=C_SO if is_so else ("#0F6E56" if is_math else C_OTHER),
                 alpha=1.0 if (is_so or is_math) else 0.55, zorder=4 if (is_so or is_math) else 3)
-        ax.annotate(s, (xs[-1], y[-1]), fontsize=7.5, xytext=(4, 0),
-                    textcoords="offset points", va="center",
-                    color=C_SO if is_so else ("#0F6E56" if is_math else C_OTHER))
+        entries.append({"site": s, "y": float(y[-1]),
+                        "color": C_SO if is_so else ("#0F6E56" if is_math else C_OTHER),
+                        "bold": is_so or is_math})
+    # 标签防重叠：除 stackoverflow 外所有站点末期都落在 5-12 的窄带里，
+    # 在 log10 空间自上而下强制最小间距。
+    entries.sort(key=lambda e: -np.log10(e["y"]))
+    min_gap = 0.14
+    lys = [np.log10(e["y"]) for e in entries]
+    for i in range(1, len(lys)):
+        if lys[i - 1] - lys[i] < min_gap:
+            lys[i] = lys[i - 1] - min_gap
+    for e, ly in zip(entries, lys):
+        ax.annotate(e["site"], (xs[-1], 10 ** ly), fontsize=7.5,
+                    xytext=(4, 0), textcoords="offset points",
+                    va="center", color=e["color"],
+                    weight="500" if e["bold"] else "400")
     ax.set_yscale("log")
     ax.axvline(-0.5, color=C_SO, lw=1.0, ls="--")
     ax.axhline(100, color=C_GRAY, lw=0.7, ls=":")
