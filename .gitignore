@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store
+
+# 本地环境变量（含 API key，绝不入库）
+.env
+*.env
+
+# 保留 data/raw：API 原始响应逐请求缓存，是复现性的凭据
+# 如需精简仓库可忽略，但会降低可追溯性
+# data/raw/
+
+# 中间产物（可由 make all 重新生成）
+outputs/results.json
+outputs/attribution.json

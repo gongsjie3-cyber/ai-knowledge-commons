@@ -1,0 +1,501 @@
+{
+  "n_obs_site_panel": 184,
+  "sites": [
+    "askubuntu",
+    "english",
+    "math",
+    "salesforce",
+    "serverfault",
+    "stackoverflow",
+    "stats",
+    "superuser"
+  ],
+  "numeraire": "math",
+  "did_pooled": {
+    "beta": -0.22484957847658502,
+    "se": 0.13365005505980618,
+    "p": 0.09249604874094541,
+    "ci": [
+      -0.4867988729256003,
+      0.03709971597243031
+    ],
+    "nobs": 161,
+    "n_clusters": 7
+  },
+  "did_pooled_trend": {
+    "beta": 0.02363803224380799,
+    "se": 0.10821971738954538,
+    "p": 0.8270969773049395,
+    "ci": [
+      -0.18846871625680395,
+      0.2357447807444199
+    ],
+    "nobs": 161,
+    "n_clusters": 7
+  },
+  "wild": {
+    "beta": -0.22484957847658502,
+    "p_wild": 0.06546726636681659,
+    "ci_wild": [
+      -0.4277923567673819,
+      -0.02210265067667283
+    ],
+    "B": 2000
+  },
+  "placebo": {
+    "beta": 0.10292814714451001,
+    "se": 0.0285411457007475,
+    "p": 0.0003105850949228178,
+    "ci": [
+      0.046988529493534714,
+      0.1588677647954853
+    ],
+    "nobs": 63,
+    "n_clusters": 7
+  },
+  "event_study": [
+    {
+      "rel": -7,
+      "beta": 0.03736117427048874,
+      "se": 0.08645318301782179,
+      "ci_lo": -0.1320839507932918,
+      "ci_hi": 0.20680629933426928
+    },
+    {
+      "rel": -6,
+      "beta": 0.04804032427299293,
+      "se": 0.09536083427828836,
+      "ci_lo": -0.1388634764481449,
+      "ci_hi": 0.23494412499413075
+    },
+    {
+      "rel": -5,
+      "beta": 0.25988211368017256,
+      "se": 0.10318672222679846,
+      "ci_lo": 0.057639854432908894,
+      "ci_hi": 0.46212437292743624
+    },
+    {
+      "rel": -4,
+      "beta": 0.08303646884382926,
+      "se": 0.09908741042545365,
+      "ci_lo": -0.11117128691139855,
+      "ci_hi": 0.27724422459905707
+    },
+    {
+      "rel": -3,
+      "beta": 0.17556981515610198,
+      "se": 0.11029120491571882,
+      "ci_lo": -0.04059697429023387,
+      "ci_hi": 0.39173660460243787
+    },
+    {
+      "rel": -2,
+      "beta": 0.19137747250030934,
+      "se": 0.10794767265744509,
+      "ci_lo": -0.020196078123202177,
+      "ci_hi": 0.40295102312382086
+    },
+    {
+      "rel": -1,
+      "beta": 0.0,
+      "se": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.0
+    },
+    {
+      "rel": 0,
+      "beta": 0.16223350180606733,
+      "se": 0.09870439935029808,
+      "ci_lo": -0.031223566036175626,
+      "ci_hi": 0.35569056964831025
+    },
+    {
+      "rel": 1,
+      "beta": 0.2105063453926289,
+      "se": 0.09367230268342981,
+      "ci_lo": 0.026912005784171827,
+      "ci_hi": 0.39410068500108597
+    },
+    {
+      "rel": 2,
+      "beta": 0.07786509177586509,
+      "se": 0.06252393956685318,
+      "ci_lo": -0.044679577946726,
+      "ci_hi": 0.20040976149845618
+    },
+    {
+      "rel": 3,
+      "beta": 0.09777040946845089,
+      "se": 0.06371846540295525,
+      "ci_lo": -0.027115487871502864,
+      "ci_hi": 0.22265630680840465
+    },
+    {
+      "rel": 4,
+      "beta": -0.11153057685823142,
+      "se": 0.05152050123903376,
+      "ci_lo": -0.21250890375218884,
+      "ci_hi": -0.010552249964274021
+    },
+    {
+      "rel": 5,
+      "beta": -0.06158031359815874,
+      "se": 0.07136607331255765,
+      "ci_lo": -0.20145524700881684,
+      "ci_hi": 0.07829461981249936
+    },
+    {
+      "rel": 6,
+      "beta": -0.08119125723593121,
+      "se": 0.033207690654574226,
+      "ci_lo": -0.14627713492864403,
+      "ci_hi": -0.01610537954321839
+    },
+    {
+      "rel": 7,
+      "beta": 0.02711235609915802,
+      "se": 0.04117955309352649,
+      "ci_lo": -0.05359808486360887,
+      "ci_hi": 0.10782279706192491
+    },
+    {
+      "rel": 8,
+      "beta": -0.17076511611779294,
+      "se": 0.04667972797439307,
+      "ci_lo": -0.2622557017557302,
+      "ci_hi": -0.07927453047985566
+    },
+    {
+      "rel": 9,
+      "beta": -0.09510296499623139,
+      "se": 0.059926431230710994,
+      "ci_lo": -0.21255661193044123,
+      "ci_hi": 0.02235068193797847
+    },
+    {
+      "rel": 10,
+      "beta": -0.17828022486129788,
+      "se": 0.09482606973697312,
+      "ci_lo": -0.36413590634124876,
+      "ci_hi": 0.007575456618652998
+    },
+    {
+      "rel": 11,
+      "beta": -0.17786115688814266,
+      "se": 0.1367092053418839,
+      "ci_lo": -0.4458062757133259,
+      "ci_hi": 0.09008396193704057
+    },
+    {
+      "rel": 12,
+      "beta": -0.1208194873629449,
+      "se": 0.14759496101668357,
+      "ci_lo": -0.41010029525523795,
+      "ci_hi": 0.16846132052934815
+    },
+    {
+      "rel": 13,
+      "beta": -0.15326243222505714,
+      "se": 0.16941733208232415,
+      "ci_lo": -0.4853143014632747,
+      "ci_hi": 0.1787894370131604
+    },
+    {
+      "rel": 14,
+      "beta": -0.3054008378499193,
+      "se": 0.21834710448911657,
+      "ci_lo": -0.7333532987771917,
+      "ci_hi": 0.12255162307735312
+    },
+    {
+      "rel": 15,
+      "beta": -0.26438209970198817,
+      "se": 0.2568303149203948,
+      "ci_lo": -0.767760267084042,
+      "ci_hi": 0.2389960676800657
+    }
+  ],
+  "per_site_att": [
+    {
+      "site": "askubuntu",
+      "quarter": "2023Q1",
+      "own_pct": -17.875,
+      "numeraire_pct": 2.506,
+      "did_pp": -20.381
+    },
+    {
+      "site": "english",
+      "quarter": "2023Q1",
+      "own_pct": -9.43,
+      "numeraire_pct": 2.506,
+      "did_pp": -11.937
+    },
+    {
+      "site": "math",
+      "quarter": "2023Q1",
+      "own_pct": 2.506,
+      "numeraire_pct": 2.506,
+      "did_pp": 0.0
+    },
+    {
+      "site": "salesforce",
+      "quarter": "2023Q1",
+      "own_pct": -6.141,
+      "numeraire_pct": 2.506,
+      "did_pp": -8.648
+    },
+    {
+      "site": "serverfault",
+      "quarter": "2023Q1",
+      "own_pct": -17.946,
+      "numeraire_pct": 2.506,
+      "did_pp": -20.452
+    },
+    {
+      "site": "stackoverflow",
+      "quarter": "2023Q1",
+      "own_pct": -17.517,
+      "numeraire_pct": 2.506,
+      "did_pp": -20.024
+    },
+    {
+      "site": "stats",
+      "quarter": "2023Q1",
+      "own_pct": -1.331,
+      "numeraire_pct": 2.506,
+      "did_pp": -3.838
+    },
+    {
+      "site": "superuser",
+      "quarter": "2023Q1",
+      "own_pct": 0.63,
+      "numeraire_pct": 2.506,
+      "did_pp": -1.876
+    },
+    {
+      "site": "askubuntu",
+      "quarter": "2023Q4",
+      "own_pct": -41.572,
+      "numeraire_pct": -3.87,
+      "did_pp": -37.701
+    },
+    {
+      "site": "english",
+      "quarter": "2023Q4",
+      "own_pct": -30.55,
+      "numeraire_pct": -3.87,
+      "did_pp": -26.68
+    },
+    {
+      "site": "math",
+      "quarter": "2023Q4",
+      "own_pct": -3.87,
+      "numeraire_pct": -3.87,
+      "did_pp": 0.0
+    },
+    {
+      "site": "salesforce",
+      "quarter": "2023Q4",
+      "own_pct": -45.371,
+      "numeraire_pct": -3.87,
+      "did_pp": -41.501
+    },
+    {
+      "site": "serverfault",
+      "quarter": "2023Q4",
+      "own_pct": -29.827,
+      "numeraire_pct": -3.87,
+      "did_pp": -25.956
+    },
+    {
+      "site": "stackoverflow",
+      "quarter": "2023Q4",
+      "own_pct": -55.625,
+      "numeraire_pct": -3.87,
+      "did_pp": -51.754
+    },
+    {
+      "site": "stats",
+      "quarter": "2023Q4",
+      "own_pct": -31.948,
+      "numeraire_pct": -3.87,
+      "did_pp": -28.077
+    },
+    {
+      "site": "superuser",
+      "quarter": "2023Q4",
+      "own_pct": -26.255,
+      "numeraire_pct": -3.87,
+      "did_pp": -22.384
+    },
+    {
+      "site": "askubuntu",
+      "quarter": "2024Q4",
+      "own_pct": -49.389,
+      "numeraire_pct": -39.507,
+      "did_pp": -9.883
+    },
+    {
+      "site": "english",
+      "quarter": "2024Q4",
+      "own_pct": -59.332,
+      "numeraire_pct": -39.507,
+      "did_pp": -19.825
+    },
+    {
+      "site": "math",
+      "quarter": "2024Q4",
+      "own_pct": -39.507,
+      "numeraire_pct": -39.507,
+      "did_pp": 0.0
+    },
+    {
+      "site": "salesforce",
+      "quarter": "2024Q4",
+      "own_pct": -70.577,
+      "numeraire_pct": -39.507,
+      "did_pp": -31.071
+    },
+    {
+      "site": "serverfault",
+      "quarter": "2024Q4",
+      "own_pct": -59.447,
+      "numeraire_pct": -39.507,
+      "did_pp": -19.941
+    },
+    {
+      "site": "stackoverflow",
+      "quarter": "2024Q4",
+      "own_pct": -81.047,
+      "numeraire_pct": -39.507,
+      "did_pp": -41.541
+    },
+    {
+      "site": "stats",
+      "quarter": "2024Q4",
+      "own_pct": -60.12,
+      "numeraire_pct": -39.507,
+      "did_pp": -20.613
+    },
+    {
+      "site": "superuser",
+      "quarter": "2024Q4",
+      "own_pct": -50.945,
+      "numeraire_pct": -39.507,
+      "did_pp": -11.438
+    },
+    {
+      "site": "askubuntu",
+      "quarter": "2025Q4",
+      "own_pct": -73.982,
+      "numeraire_pct": -74.508,
+      "did_pp": 0.525
+    },
+    {
+      "site": "english",
+      "quarter": "2025Q4",
+      "own_pct": -76.523,
+      "numeraire_pct": -74.508,
+      "did_pp": -2.015
+    },
+    {
+      "site": "math",
+      "quarter": "2025Q4",
+      "own_pct": -74.508,
+      "numeraire_pct": -74.508,
+      "did_pp": 0.0
+    },
+    {
+      "site": "salesforce",
+      "quarter": "2025Q4",
+      "own_pct": -86.847,
+      "numeraire_pct": -74.508,
+      "did_pp": -12.339
+    },
+    {
+      "site": "serverfault",
+      "quarter": "2025Q4",
+      "own_pct": -79.208,
+      "numeraire_pct": -74.508,
+      "did_pp": -4.7
+    },
+    {
+      "site": "stackoverflow",
+      "quarter": "2025Q4",
+      "own_pct": -95.473,
+      "numeraire_pct": -74.508,
+      "did_pp": -20.966
+    },
+    {
+      "site": "stats",
+      "quarter": "2025Q4",
+      "own_pct": -82.586,
+      "numeraire_pct": -74.508,
+      "did_pp": -8.079
+    },
+    {
+      "site": "superuser",
+      "quarter": "2025Q4",
+      "own_pct": -77.2,
+      "numeraire_pct": -74.508,
+      "did_pp": -2.692
+    },
+    {
+      "site": "askubuntu",
+      "quarter": "2026Q3",
+      "own_pct": -86.706,
+      "numeraire_pct": -88.96,
+      "did_pp": 2.254
+    },
+    {
+      "site": "english",
+      "quarter": "2026Q3",
+      "own_pct": -88.31,
+      "numeraire_pct": -88.96,
+      "did_pp": 0.65
+    },
+    {
+      "site": "math",
+      "quarter": "2026Q3",
+      "own_pct": -88.96,
+      "numeraire_pct": -88.96,
+      "did_pp": 0.0
+    },
+    {
+      "site": "salesforce",
+      "quarter": "2026Q3",
+      "own_pct": -94.959,
+      "numeraire_pct": -88.96,
+      "did_pp": -5.999
+    },
+    {
+      "site": "serverfault",
+      "quarter": "2026Q3",
+      "own_pct": -93.441,
+      "numeraire_pct": -88.96,
+      "did_pp": -4.481
+    },
+    {
+      "site": "stackoverflow",
+      "quarter": "2026Q3",
+      "own_pct": -99.025,
+      "numeraire_pct": -88.96,
+      "did_pp": -10.065
+    },
+    {
+      "site": "stats",
+      "quarter": "2026Q3",
+      "own_pct": -91.633,
+      "numeraire_pct": -88.96,
+      "did_pp": -2.673
+    },
+    {
+      "site": "superuser",
+      "quarter": "2026Q3",
+      "own_pct": -92.176,
+      "numeraire_pct": -88.96,
+      "did_pp": -3.216
+    }
+  ]
+}

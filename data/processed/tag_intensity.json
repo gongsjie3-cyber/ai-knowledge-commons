@@ -1,0 +1,13 @@
+{
+  "python": 1802367,
+  "javascript": 2263914,
+  "java": 1782740,
+  "c#": 1492939,
+  "php": 1395083,
+  "sql": 607492,
+  "bun": 0,
+  "sveltekit": 308,
+  "htmx": 73,
+  "langchain": 1,
+  "openai-api": 42
+}
