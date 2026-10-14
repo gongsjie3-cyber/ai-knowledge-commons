@@ -32,8 +32,7 @@ def main():
     print("=" * 78)
     print("A. 跨站点：pp 口径 vs log 口径")
     print("=" * 78)
-    d = pd.concat([pd.read_csv(f) for f in sorted(PROC.glob("raw_counts_sites_*.csv"))],
-                  ignore_index=True)
+    d = pd.read_csv(PROC / "raw_counts_sites.csv")
     d = d.drop_duplicates(["site", "quarter"], keep="last")
     w = d.pivot_table(index="site", columns="quarter", values="questions")
 
@@ -99,8 +98,8 @@ def main():
     print("=" * 78)
     print("C. tag 面板：MATURE 组内是否真的无梯度")
     print("=" * 78)
-    t = pd.concat([pd.read_csv(f) for f in sorted(PROC.glob("raw_counts_tags_*.csv"))],
-                  ignore_index=True).drop_duplicates(["unit", "quarter"], keep="last")
+    t = pd.read_csv(PROC / "raw_counts_tags.csv").drop_duplicates(
+        ["unit", "quarter"], keep="last")
     tw = t.pivot_table(index="unit", columns="quarter", values="questions")
     mature = ["python", "javascript", "java", "c#", "php", "sql"]
     base = tw["2022Q3"]

@@ -252,8 +252,9 @@ def run(plan: str, budget: int | None, dry_run: bool):
 
     import csv
     if rows:
-        stamp = datetime.now().strftime("%Y%m%d")
-        out = PROCESSED / f"raw_counts_{plan}_{stamp}.csv"
+        # 固定文件名、每次覆盖：重跑不会堆积重复分片，
+        # 结果始终与 data/raw 中的原始响应一一对应。
+        out = PROCESSED / f"raw_counts_{plan}.csv"
         with out.open("w", newline="") as f:
             w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
             w.writeheader()
