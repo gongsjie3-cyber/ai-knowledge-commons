@@ -75,6 +75,13 @@
   </section>
 
   <section>
+    <h2>二·五 · 横截面一致性：7 个独立知识领域同时触底、同步收敛</h2>
+    <p class="desc">以数学站点为基准，各知识领域相对数学的超额下降。7 条独立曲线呈现完全相同的时间模式——这是比任何单一系数更硬的证据。</p>
+    <div class="chart" style="height:340px"><canvas id="siteAttChart" role="img" aria-label="七个知识领域相对数学站点的超额下降折线图">fallback</canvas></div>
+    <div class="finding">7 个彼此独立的知识领域全部在 <b>2023Q4 同一时期触底</b>（−22 至 −52 pp），随后全部收敛回零附近。这种横截面一致性无法由站点特异性因素解释，直接证明 AI 的替代效应是<b>一次性水平冲击</b>而非持续的增长率差异。</div>
+  </section>
+
+  <section>
     <h2>三 · 知识领域轨迹（指数化至 2022Q3 = 100，对数刻度）</h2>
     <p class="desc">成熟领域（实线）在冲击后集体跳水；新技术栈（虚线）先因采用曲线上升、后期同样塌陷——证明后期是平台级现象。</p>
     <div class="chart" style="height:380px"><canvas id="trajChart" role="img" aria-label="十一个知识领域提问量轨迹图">fallback</canvas></div>
@@ -144,6 +151,23 @@ new Chart(document.getElementById('attrChart'),{
           x:{stacked:true}},
   plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:11}}}}}}
 });
+
+const siteAtt={q:['2023Q1','2023Q4','2024Q4','2025Q4','2026Q3'],series:{
+ stackoverflow:[-20.0,-51.8,-41.5,-21.0,-10.1],
+ salesforce:[-8.6,-41.5,-31.1,-12.3,-6.0],
+ askubuntu:[-20.4,-37.7,-9.9,0.5,2.3],
+ serverfault:[-20.5,-26.0,-19.9,-4.7,-4.5],
+ stats:[-3.8,-28.1,-20.6,-8.1,-2.7],
+ english:[-11.9,-26.7,-19.8,-2.0,0.6],
+ superuser:[-1.9,-22.4,-11.4,-2.7,-3.2]}};
+new Chart(document.getElementById('siteAttChart'),{
+ type:'line',
+ data:{labels:siteAtt.q,datasets:Object.entries(siteAtt.series).map(([s,v])=>({
+   label:s,data:v,borderColor:s==='stackoverflow'?treat:ctrl,backgroundColor:s==='stackoverflow'?treat:ctrl,
+   borderWidth:s==='stackoverflow'?2.6:1.2,pointRadius:s==='stackoverflow'?4:2.5,tension:.25}))},
+ options:{responsive:true,maintainAspectRatio:false,
+  scales:{y:{title:{display:true,text:'相对数学站点的超额下降（百分点）'}}},
+  plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:10},usePointStyle:true}}}}});
 
 const traj={rel:[-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
  series:[
