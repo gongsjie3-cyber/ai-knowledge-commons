@@ -98,17 +98,30 @@ def fig_cross_site():
     if cs.empty:
         return
     fig, ax = plt.subplots(figsize=(6.4, 3.6))
+    # 先画线并收集标签位置
+    entries = []
     for _, r in cs.iterrows():
         pre, post = r["pre"], r["post"]
         is_so = r["site"] == "stackoverflow"
-        ax.plot([0, 1], [pre / pre * 100, post / pre * 100], "-o",
+        y_end = post / pre * 100
+        ax.plot([0, 1], [100, y_end], "-o",
                 color=C_TREAT if is_so else C_CTRL,
                 lw=2.2 if is_so else 1.1,
                 ms=5 if is_so else 3.5,
                 alpha=1.0 if is_so else 0.75)
-        ax.text(1.05, post / pre * 100, f"{r['site']}  {r['pct_change']*100:+.1f}%",
-                fontsize=8, va="center", color=C_TREAT if is_so else C_CTRL,
-                weight="500" if is_so else "400")
+        entries.append({"site": r["site"], "y": y_end,
+                        "label": f"{r['site']}  {r['pct_change']*100:+.1f}%",
+                        "color": C_TREAT if is_so else C_CTRL,
+                        "bold": is_so})
+    # 标签防重叠：按 y 从高到低，相邻间距不足时向下推
+    entries.sort(key=lambda e: -e["y"])
+    min_gap = 4.2
+    for i in range(1, len(entries)):
+        if entries[i - 1]["y"] - entries[i]["y"] < min_gap:
+            entries[i]["y"] = entries[i - 1]["y"] - min_gap
+    for e in entries:
+        ax.text(1.05, e["y"], e["label"], fontsize=8, va="center",
+                color=e["color"], weight="500" if e["bold"] else "400")
     ax.axhline(100, color=C_GRAY, lw=0.7, ls=":")
     ax.set_xticks([0, 1])
     ax.set_xticklabels(["2022Q3\n(pre-ChatGPT)", "2023Q4\n(+13 months)"])
