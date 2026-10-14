@@ -45,14 +45,14 @@
       <div class="note">2022Q3 → 2023Q4，占同期总降幅的 93%</div>
     </div>
     <div class="kpi">
-      <div class="label">到 2026 年 AI 的归因份额</div>
+      <div class="label">到 2026 年 LLM 直接替代的归因份额（百分点口径）</div>
       <div class="num" style="color:var(--treat)">10.2%</div>
-      <div class="note">其余降幅为跨越全网络的平台级衰亡</div>
+      <div class="note">注意：对数口径下相对差距同期从 53.8% 扩大到 91.2%——收敛是地板效应，不是影响消退</div>
     </div>
     <div class="kpi">
       <div class="label">剂量-反应斜率（成熟领域组内）</div>
-      <div class="num">+4.8 pp / log</div>
-      <div class="note">p = 0.43，统计上为平 → 门槛效应</div>
+      <div class="num">+0.4 pp / log</div>
+      <div class="note">p = 0.955，统计上为平 → 门槛效应</div>
     </div>
     <div class="kpi">
       <div class="label">伪处理时间安慰剂</div>
@@ -69,16 +69,16 @@
 
   <section>
     <h2>二 · 归因分解：AI 的份额在一年内从 93% 稀释到 10%</h2>
-    <p class="desc">Stack Overflow 累计降幅 = AI 可归因（与数学站点的差额） + 平台级衰亡（对照站点同样经历的）。</p>
+    <p class="desc">Stack Overflow 累计降幅 = AI 可归因（与数学站点的差额） + 平台级衰亡（对照站点同样经历的）。2023Q1 的份额 114% >100%，是因为对照站点同期反升 2.5%——含义是「若无 LLM 直接替代，SO 本应上升」。</p>
     <div class="chart"><canvas id="attrChart" role="img" aria-label="Stack Overflow降幅的AI归因分解堆叠条形图">fallback</canvas></div>
-    <div class="finding">媒体流行的「AI 吸干 Stack Overflow（−99%）」叙事把 AI 的作用高估了近 10 倍。AI 的替代效应是一次性的水平冲击，2023 年内基本完成；其后更猛烈的崩塌连数学站点也同步发生，与领域是否可被 LLM 替代无关。</div>
+    <div class="finding">「AI 吸干 Stack Overflow（−99%）」的流行叙事是错误归因：后期降幅的主体是连数学站点也同步发生的跨领域衰亡，不能记在「LLM 直接替代编程知识」头上。<b>但注意两种口径的分歧</b>——百分点口径显示归因份额 93%→10%，而对数口径下 SO 相对对照领域的差距从 53.8% 扩大到 91.2%。百分点口径的收敛是 SO 已跌至地板的算术结果，<b>不应解读为 AI 影响消退</b>。</div>
   </section>
 
   <section>
     <h2>二·五 · 横截面一致性：7 个独立知识领域同时触底、同步收敛</h2>
     <p class="desc">以数学站点为基准，各知识领域相对数学的超额下降。7 条独立曲线呈现完全相同的时间模式——这是比任何单一系数更硬的证据。</p>
     <div class="chart" style="height:340px"><canvas id="siteAttChart" role="img" aria-label="七个知识领域相对数学站点的超额下降折线图">fallback</canvas></div>
-    <div class="finding">7 个彼此独立的知识领域全部在 <b>2023Q4 同一时期触底</b>（−22 至 −52 pp），随后全部收敛回零附近。这种横截面一致性无法由站点特异性因素解释，直接证明 AI 的替代效应是<b>一次性水平冲击</b>而非持续的增长率差异。</div>
+    <div class="finding">7 个彼此独立的知识领域全部在 <b>2023Q4 同一时期触底</b>（−22 至 −52 pp）。这种横截面一致性无法由站点特异性因素解释。需要精确解读的是：触底后百分点口径的「收敛」由 SO 跌至地板的算术约束驱动；对数口径下相对差距同期反而从 53.8% 扩大到 91.2%——<b>超额下降在 2023 年内形成，其后绝对崩塌由跨领域衰亡主导，但相对命运的差距并未收窄</b>。</div>
   </section>
 
   <section>

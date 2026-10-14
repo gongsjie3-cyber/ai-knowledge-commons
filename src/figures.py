@@ -215,9 +215,11 @@ def fig_threshold():
             transform=ax.transAxes, fontsize=6.5, color=C_GRAY)
 
     ax = axes[1]
-    m = df[df["unit"].isin(MATURE)]
-    b6 = base[base.index.isin(MATURE)]
-    p6 = window.groupby("unit")["questions"].mean()[MATURE]
+    # 注意: base 的索引是字母序，而 MATURE 列表是自定义顺序。
+    # 若分子用 MATURE 顺序、分母用字母序，会产生错位并得到错误的斜率。
+    # 这里统一 reindex 到 MATURE 顺序后再做除法。
+    b6 = base.reindex(MATURE)
+    p6 = window.groupby("unit")["questions"].mean().reindex(MATURE)
     y6 = ((p6 - b6) / b6 * 100).values
     x6 = np.log1p(inten[MATURE].values)
     o = np.argsort(x6)
