@@ -3,6 +3,21 @@
 > 目标：让这个项目在简历上变成一个**可点击、可验证、可炫耀**的资产，而不是一行自我陈述的文字。
 > 全程免费，预计 20 分钟。
 
+## 当前状态
+
+| 项目 | 地址 |
+|---|---|
+| GitHub 仓库 | https://github.com/gongsjie3-cyber/ai-knowledge-commons |
+| 在线看板 | https://gongsjie3-cyber.github.io/ai-knowledge-commons/ |
+
+仓库已推送（489 个文件，2 个 commit，public）。看板需在仓库 Settings → Pages 中启用（Source 选 `main` / `/docs`）后生效。
+
+**简历格式**：
+```
+生成式 AI 与知识公共品的供给塌陷 — 基于 Stack Exchange 网络的准自然实验
+github.com/gongsjie3-cyber/ai-knowledge-commons · 在线看板: gongsjie3-cyber.github.io/ai-knowledge-commons
+```
+
 ## 一、需要「申请」的：只有 2 项
 
 ### 1. Stack Exchange API key（强烈建议，1 分钟）
