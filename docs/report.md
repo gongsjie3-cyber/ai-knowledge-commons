@@ -1,7 +1,7 @@
 # 生成式 AI 与知识公共品的供给塌陷
 ### 一个准自然实验：ChatGPT 冲击下的 Stack Exchange 网络
 **作者**：gongsjie3-cyber · 管理科学与工程硕士研究生 · 2026年8月
-**数据**：Stack Exchange REST API v2.3 · 253 tag-季度观测 + 6 站点全量计数 · 全流程可复现
+**数据**：Stack Exchange REST API v2.3 · 253 tag-季度观测 + 184 站点-季度观测（8 站点 × 23 季度）· 全流程可复现
 
 ---
 
@@ -85,7 +85,18 @@ $$\hat\beta_{DiD} = \log(144895/326522) - \log(19522/20308) = -0.773 \quad (\tex
 
 比 pooled 系数更重要的是**横截面一致性**：7 个处理领域（除 math 外的全部站点）相对数学站点的超额下降，全部在 **2023Q4 同一时期触底**（−22.4 至 −51.8 pp），随后全部收敛回零附近（2026Q3：−10.1 至 +2.3 pp）。七个彼此独立的知识领域呈现完全相同的时间模式，这无法由任何站点特异性因素解释。
 
+![fig6](figures/fig6_site_att.png)
+
+八个站点的原始轨迹（fig7）显示崩塌是全网性的，数学站点只是滞后了约一年，随后同样崩塌：
+
+![fig7](figures/fig7_site_trajectories.png)
+
 对这一「触底后收敛」需要精确解读：在**百分点口径**下它表现为收敛，但如 3.2 所述，这主要由 Stack Overflow 跌至地板后的算术约束驱动；在**对数口径**下，Stack Overflow 相对 Mathematics 的差距同期从 53.8% 扩大到 91.2%。因此正确的表述是：**LLM 直接替代带来的超额下降集中在 2023 年内形成，其后绝对水平的进一步崩塌由一个跨领域的普遍性衰亡主导；而相对命运的差距并未收窄，反而在持续扩大**。
+
+以 Mathematics 为 numeraire 的面板事件研究（fig8）是上述两种口径分歧的直接可视化：同一组数据，百分点口径随时间收敛，对数口径持续下探。
+
+![fig8](figures/fig8_event_study_none.png)
+![fig8](figures/fig8_event_study_linear.png)
 
 ![fig6](figures/fig6_site_att.png)
 
@@ -153,8 +164,18 @@ $$\hat\beta_{DiD} = \log(144895/326522) - \log(19522/20308) = -0.773 \quad (\tex
 
 ```bash
 pip install -r requirements.txt
-python src/collect.py --plan tags       # 已缓存，不消耗配额
-python src/collect.py --plan sites      # 需配额或 SE_API_KEY
-python src/analyze.py
+
+# 1. 采集（有缓存即跳过，不重复消耗配额）
+python src/collect.py --plan tags       # 站内 tag 面板（已缓存）
+python src/collect.py --plan sites      # 跨站点面板（已缓存）
+
+# 2. 验证 + 分析 + 成图
+python src/verify_sitewide.py
+python src/analyze.py                   # 站内 tag 面板
+python src/analyze_sites.py             # 跨站点面板
 python src/figures.py
+python src/figures_sites.py
+
+# 3. 发布前数字审计（可选）
+python src/audit.py
 ```

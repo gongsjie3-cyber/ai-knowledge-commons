@@ -52,11 +52,11 @@ def qnum(q: str) -> int:
 
 
 def load_panel(scope: str = "all") -> pd.DataFrame:
-    csvs = sorted(PROC.glob("raw_counts_tags_*.csv"))
-    if not csvs:
+    path = PROC / "raw_counts_tags.csv"
+    if not path.exists():
         sys.exit("run src/collect.py --plan tags first")
-    df = pd.concat([pd.read_csv(f) for f in csvs], ignore_index=True)
-    df = df.dropna(subset=["questions"]).drop_duplicates(["unit", "quarter"], keep="last")
+    df = pd.read_csv(path).dropna(subset=["questions"]).drop_duplicates(
+        ["unit", "quarter"], keep="last")
     df["questions"] = df["questions"].astype(int)
     intensity = json.loads((PROC / "tag_intensity.json").read_text())
 

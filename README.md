@@ -15,17 +15,24 @@
 ├── src/
 │   ├── collect.py          # 配额感知 + 断点续传的采集器（支持 SE_API_KEY）
 │   ├── verify_sitewide.py  # 排除删帖/重打标签技术假象的验证
-│   ├── analyze.py          # TWFE / PPML / wild bootstrap / 安慰剂 / Honest DiD
-│   └── figures.py          # 全部图表
+│   ├── analyze.py          # tag 面板：TWFE / PPML / wild bootstrap / 安慰剂 / Honest DiD
+│   ├── analyze_sites.py    # 跨站点面板：以 Mathematics 为 numeraire 的相对对数差分 DiD
+│   ├── figures.py          # tag 面板图表（fig1–fig5）
+│   ├── figures_sites.py    # 跨站点图表（fig6–fig8）
+│   └── audit.py            # 发布前数字审计：用原始数据重算每条公开断言
 ├── data/
 │   ├── raw/                # API 原始响应缓存（重跑不消耗配额）
 │   └── processed/          # 面板 CSV + 处理强度 JSON
 ├── outputs/
 │   ├── report.md           # 完整分析报告
-│   ├── figures/            # fig1–fig5
+│   ├── figures/            # fig1–fig8（9 张）
 │   ├── dashboard/index.html
-│   └── results.json
-└── resume/project_description.md
+│   ├── results.json        # tag 面板估计结果
+│   └── results_sites.json   # 跨站点面板估计结果
+└── resume/
+    ├── project_description.md   # 简历项目描述（中英）
+    ├── resume_placement.md      # 放置位置与分岗位包装
+    └── plan.md                  # 四周实施方案与避坑清单
 ```
 
 ## 复现
@@ -56,7 +63,7 @@ python src/figures.py
 | php | 1,395,083 |
 | sql | 607,492 |
 | sveltekit | 308 |
-| openai-api | 42 |
 | htmx | 73 |
+| openai-api | 42 |
 | langchain | 1 |
 | bun | **0**（ChatGPT 发布时该技术栈尚未存在） |

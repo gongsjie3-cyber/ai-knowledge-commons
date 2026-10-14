@@ -50,10 +50,10 @@ def qnum(q: str) -> int:
 
 
 def load_site_panel() -> pd.DataFrame:
-    fs = sorted(PROC.glob("raw_counts_sites_*.csv"))
-    if not fs:
+    path = PROC / "raw_counts_sites.csv"
+    if not path.exists():
         raise SystemExit("no site panel found; run: python src/collect.py --plan sites")
-    df = pd.concat([pd.read_csv(f) for f in fs], ignore_index=True)
+    df = pd.read_csv(path)
     df = df[["site", "quarter", "questions"]].copy()
     chk = PROC / "sitewide_check.csv"
     if chk.exists():                       # 合并早期稀疏验证点（完整面板优先）
