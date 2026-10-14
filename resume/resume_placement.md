@@ -24,7 +24,7 @@
 ## 二、推荐模板（求职向 · 主力版本）
 
 ```
-生成式AI与知识公共品的供给塌陷：基于Stack Exchange网络的准自然实验      2026.09–2026.10
+生成式AI与知识公共品的供给塌陷：基于Stack Exchange网络的准自然实验      2026.08
 独立研究项目 · Python | Pandas | Statsmodels | 因果推断 | REST API 数据工程
 github.com/gongsjie3-cyber/ai-knowledge-commons · 在线看板: gongsjie3-cyber.github.io/ai-knowledge-commons
 

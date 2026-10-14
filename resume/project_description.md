@@ -3,7 +3,7 @@
 ## 英文版
 
 **Generative AI and the Knowledge Commons: A Quasi-Natural Experiment on Stack Exchange**
-*Independent research project · Python (pandas / statsmodels / matplotlib) · REST API data engineering · 2026.10*
+*Independent research project · Python (pandas / statsmodels / matplotlib) · REST API data engineering · 2026.08*
 
 Designed and executed an end-to-end causal study of how ChatGPT's release reshaped voluntary knowledge production in online communities. Built a quota-aware, resumable data pipeline over the Stack Exchange API (253 tag-quarter observations plus site-wide counts across 6 comparison sites), then estimated two-way fixed-effects DiD with unit-specific quadratic trends, Poisson PPML, and Rademacher wild cluster bootstrap.
 
@@ -15,7 +15,7 @@ Designed and executed an end-to-end causal study of how ChatGPT's release reshap
 ## 中文版
 
 **生成式 AI 与知识公共品：基于 Stack Exchange 网络的准自然实验**
-*独立研究项目 · Python（pandas / statsmodels / matplotlib）· REST API 数据工程 · 2026.10*
+*独立研究项目 · Python（pandas / statsmodels / matplotlib）· REST API 数据工程 · 2026.08*
 
 独立完成从研究设计到结论的完整因果研究：ChatGPT 发布如何重塑在线社区的人类知识生产。基于 Stack Exchange API 构建配额感知、可断点续传的数据管线（11 个知识领域 × 23 个季度共 253 个面板观测 + 6 个对照站点全量计数），使用双向固定效应 DiD（含领域特定二次趋势）、Poisson PPML 与 Rademacher wild cluster bootstrap 进行估计。
 
