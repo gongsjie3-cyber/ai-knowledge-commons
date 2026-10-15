@@ -66,6 +66,7 @@ def fig_trajectories():
     df = df.sort_values("t")
     fig, ax = plt.subplots(figsize=(9.6, 3.8))
     base = df[df["rel"] == -1].set_index("unit")["questions"]
+    entries = []
     for unit, g in df.groupby("unit"):
         grp = g["group"].iloc[0]
         y = g.sort_values("t")["questions"].values / float(base[unit]) * 100
@@ -73,8 +74,20 @@ def fig_trajectories():
         lw = 1.6 if grp == "MATURE" else 1.2
         ls = "-" if grp == "MATURE" else "--"
         ax.plot(x, y, ls, lw=lw, color=GROUP_COLOR[grp], alpha=0.85, label=None)
-        ax.text(x[-1] + 0.25, max(y[-1], 0.6), unit, fontsize=7,
-                color=GROUP_COLOR[grp])
+        entries.append({"unit": unit, "y": max(float(y[-1]), 0.6),
+                        "color": GROUP_COLOR[grp]})
+    # 标签防重叠：所有领域末期都跌到 1-2 附近，直接标注会全部叠在一起。
+    # 在 log10 空间自上而下强制最小间距。
+    entries.sort(key=lambda e: -np.log10(e["y"]))
+    min_gap = 0.16
+    lys = [np.log10(e["y"]) for e in entries]
+    for i in range(1, len(lys)):
+        if lys[i - 1] - lys[i] < min_gap:
+            lys[i] = lys[i - 1] - min_gap
+    x_end = df["rel"].max() + 0.3
+    for e, ly in zip(entries, lys):
+        ax.text(x_end, 10 ** ly, e["unit"], fontsize=7, va="center",
+                color=e["color"])
     ax.axvline(-0.5, color=C_TREAT, lw=1.0, ls="--")
     ax.axhline(100, color=C_GRAY, lw=0.7)
     ax.set_yscale("log")
