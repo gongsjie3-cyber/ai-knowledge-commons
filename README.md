@@ -59,6 +59,22 @@ python src/audit.py                     # 用原始数据重算每条公开断�
 
 配额说明：无 key 300 请求/天/IP；在 https://stackapps.com/apps/oauth/register 免费注册后设 `SE_API_KEY`（写入 `.env`），提升至 3000/天，`--plan all` 一次跑完。`data/raw/` 中缓存了全部 API 原始响应，重跑不消耗配额。
 
+## 在线看板
+
+仓库根目录的 `docs/` 即 GitHub Pages 站点，包含报告全文与全部图表，可直接在浏览器打开，无需本地运行。
+
+```bash
+make docs        # 重新生成 docs/，同步 outputs/ 下的报告与图表
+```
+
+推送后在仓库 **Settings → Pages** 启用：Source 选 `Deploy from a branch`，Branch 选 `main`、目录选 `/docs`，保存约 1 分钟生效，地址形如：
+
+```
+https://<用户名>.github.io/ai-knowledge-commons/
+```
+
+建议在仓库 About 区域填写 Description、topics 与该站点地址，便于访问者从仓库首页直接进入看板。
+
 ## 数据与处理强度
 
 | 领域 | 截至 2022-01 的累计提问数（= LLM 语料覆盖度代理） |
