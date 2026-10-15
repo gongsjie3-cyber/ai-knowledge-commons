@@ -4,7 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>生成式 AI 与知识公共品 · 交互式看板</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<!-- Chart.js 本地化：不依赖任何外部 CDN，避免内网/CND 不可达时图表空白 -->
+<script src="vendor/chart.umd.js"></script>
+<script>
+  if (typeof Chart === "undefined") {
+    document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"><\/script>');
+  }
+</script>
 <style>
   :root { --ink:#2C2C2A; --muted:#5F5E5A; --line:#D3D1C7; --treat:#A32D2D; --ctrl:#185FA5; --acc:#0F6E56; }
   * { box-sizing:border-box; margin:0; }
@@ -109,6 +115,17 @@
 </div>
 
 <script>
+if (typeof Chart === "undefined") {
+  document.querySelectorAll('.chart').forEach(function (el) {
+    el.innerHTML = '<p style="padding:1rem;font-size:.85rem;color:#5F5E5A;'
+      + 'background:#F1EFE8;border-radius:8px;line-height:1.6">'
+      + '图表库未能加载（通常是网络限制导致脚本被拦截）。'
+      + '完整图表请查看 <a href="report.md" style="color:#185FA5">report.md</a>，'
+      + '其中包含全部 9 张图的静态版本。</p>';
+  });
+  throw new Error("Chart.js unavailable - static fallback shown");
+}
+
 const treat='#A32D2D', ctrl='#185FA5', gray='#888780', acc='#0F6E56';
 Chart.defaults.font.family='-apple-system,"PingFang SC","Microsoft YaHei",sans-serif';
 Chart.defaults.color='#5F5E5A';
