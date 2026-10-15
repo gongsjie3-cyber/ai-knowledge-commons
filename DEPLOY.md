@@ -96,6 +96,42 @@ https://你的用户名.github.io/ai-knowledge-commons/
 
 ---
 
+## 三·五 · 仓库元数据（Description / topics / Website）
+
+改这三个字段必须走网页（SSH 无此权限）。路径：仓库主页右上角 **⚙️ 齿轮图标**（Edit repository metadata；旧版在 Settings → General → About）。
+
+直接复制以下内容：
+
+**Description**（≤350 字符，推荐英文，国际通用）：
+```
+Generative AI and the knowledge commons: a quasi-natural experiment quantifying ChatGPT's substitution of community-produced expertise on Stack Exchange — DiD, Poisson PPML, wild cluster bootstrap, fully reproducible.
+```
+
+中文备选：
+```
+生成式AI与知识公共品：基于Stack Exchange网络的准自然实验，量化ChatGPT对人类知识生产的替代效应
+```
+
+**Topics**（每行一个，回车确认，建议 10 个）：
+```
+causal-inference
+difference-in-differences
+panel-data
+econometrics
+quasi-experiment
+generative-ai
+data-science
+python
+stack-exchange
+information-systems
+```
+
+**Website**（容易被忽略但很值）：
+```
+https://gongsjie3-cyber.github.io/ai-knowledge-commons/
+```
+填上后，仓库主页 About 区域会出现一个可直接点击的链接——HR 不用去 Settings 找 Pages 就能进看板。
+
 ## 四、简历上怎么放
 
 推荐格式（一行搞定，链接可点）：
