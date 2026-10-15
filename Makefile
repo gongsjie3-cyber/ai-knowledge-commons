@@ -18,6 +18,7 @@ figures-sites:
 docs:
 	mkdir -p docs
 	cp outputs/dashboard/index.html docs/index.html
+	cp outputs/dashboard/interactive.html docs/interactive.html
 	cp outputs/report.md docs/report.md
 	mkdir -p docs/figures && cp outputs/figures/*.png docs/figures/
 	mkdir -p docs/vendor && cp outputs/dashboard/vendor/*.js docs/vendor/

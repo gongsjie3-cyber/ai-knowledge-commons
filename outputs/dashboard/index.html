@@ -3,46 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>生成式 AI 与知识公共品 · 交互式看板</title>
-<!-- Chart.js 本地化：不依赖任何外部 CDN，避免内网/CND 不可达时图表空白 -->
-<script src="vendor/chart.umd.js"></script>
-<script>
-  if (typeof Chart === "undefined") {
-    document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"><\/script>');
-  }
-</script>
+<title>生成式 AI 与知识公共品 · 分析看板</title>
 <style>
-  :root { --ink:#2C2C2A; --muted:#5F5E5A; --line:#D3D1C7; --treat:#A32D2D; --ctrl:#185FA5; --acc:#0F6E56; }
+  :root { --ink:#2C2C2A; --muted:#5F5E5A; --line:#D3D1C7; --treat:#A32D2D; --acc:#0F6E56; }
   * { box-sizing:border-box; margin:0; }
   body { font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; color:var(--ink);
          background:#FAFAF8; padding:2rem 1.25rem 4rem; line-height:1.6; }
-  .wrap { max-width:1080px; margin:0 auto; }
+  .wrap { max-width:980px; margin:0 auto; }
   h1 { font-size:1.45rem; font-weight:600; letter-spacing:-0.01em; }
   .sub { color:var(--muted); font-size:.9rem; margin:.35rem 0 1.5rem; }
-  .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-bottom:2rem; }
+  .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:12px; margin-bottom:2rem; }
   .kpi { background:#fff; border:.5px solid var(--line); border-radius:12px; padding:1rem 1.1rem; }
   .kpi .label { font-size:.78rem; color:var(--muted); }
-  .kpi .num { font-size:1.7rem; font-weight:600; margin-top:.15rem; }
-  .kpi .note { font-size:.78rem; color:var(--muted); margin-top:.2rem; }
-  section { background:#fff; border:.5px solid var(--line); border-radius:12px; padding:1.4rem 1.5rem; margin-bottom:1.5rem; }
-  section h2 { font-size:1.02rem; font-weight:600; margin-bottom:.2rem; }
+  .kpi .num { font-size:1.65rem; font-weight:600; margin-top:.15rem; }
+  .kpi .note { font-size:.76rem; color:var(--muted); margin-top:.2rem; }
+  section { background:#fff; border:.5px solid var(--line); border-radius:12px;
+            padding:1.3rem 1.4rem; margin-bottom:1.4rem; }
+  section h2 { font-size:1.0rem; font-weight:600; margin-bottom:.25rem; }
   section p.desc { font-size:.85rem; color:var(--muted); margin-bottom:1rem; }
-  .chart { position:relative; height:320px; }
-  table { width:100%; border-collapse:collapse; font-size:.86rem; }
+  figure { margin:0; }
+  figure img { width:100%; height:auto; display:block; border-radius:8px;
+               border:.5px solid var(--line); background:#fff; }
+  figcaption { font-size:.78rem; color:var(--muted); margin-top:.55rem; line-height:1.5; }
+  .finding { border-left:3px solid var(--treat); padding:.6rem .9rem; background:#FAF7F6;
+             margin-top:.9rem; font-size:.88rem; border-radius:0 8px 8px 0; }
+  table { width:100%; border-collapse:collapse; font-size:.86rem; margin-top:.4rem; }
   th,td { text-align:left; padding:.45rem .6rem; border-bottom:.5px solid var(--line); }
   th { color:var(--muted); font-weight:500; font-size:.78rem; }
   td.num { text-align:right; font-variant-numeric:tabular-nums; }
-  .tag { display:inline-block; font-size:.72rem; padding:.1rem .5rem; border-radius:99px; margin-left:.4rem; }
+  .tag { display:inline-block; font-size:.72rem; padding:.1rem .5rem; border-radius:99px; }
   .tag.neg { background:#FCEBEB; color:#A32D2D; }
   .tag.pos { background:#E1F5EE; color:#0F6E56; }
-  .finding { border-left:3px solid var(--treat); padding:.6rem .9rem; background:#FAF7F6; margin-top:1rem; font-size:.9rem; border-radius:0 8px 8px 0; }
-  footer { color:var(--muted); font-size:.78rem; margin-top:2rem; }
+  footer { color:var(--muted); font-size:.78rem; margin-top:1.8rem; }
+  a { color:#185FA5; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>生成式 AI 与知识公共品的供给塌陷</h1>
-  <p class="sub">ChatGPT 发布（2022-11-30）对 Stack Exchange 网络的冲击 · 准自然实验 · 数据截至 2026Q3 · 全流程可复现</p>
+  <p class="sub">ChatGPT 发布（2022-11-30）对 Stack Exchange 网络的冲击 · 准自然实验 ·
+     数据覆盖 2021Q1–2026Q3 · 全流程可复现 ·
+     <a href="report.md">完整报告</a> · <a href="interactive.html">交互版看板</a></p>
 
   <div class="kpis">
     <div class="kpi">
@@ -51,9 +52,9 @@
       <div class="note">2022Q3 → 2023Q4，占同期总降幅的 93%</div>
     </div>
     <div class="kpi">
-      <div class="label">到 2026 年 LLM 直接替代的归因份额（百分点口径）</div>
+      <div class="label">2026 年 LLM 直接替代的归因份额（百分点口径）</div>
       <div class="num" style="color:var(--treat)">10.2%</div>
-      <div class="note">注意：对数口径下相对差距同期从 53.8% 扩大到 91.2%——收敛是地板效应，不是影响消退</div>
+      <div class="note">对数口径下相对差距同期从 53.8% 扩大到 91.2%</div>
     </div>
     <div class="kpi">
       <div class="label">剂量-反应斜率（成熟领域组内）</div>
@@ -68,35 +69,78 @@
   </div>
 
   <section>
-    <h2>一 · 跨站点斜率：降幅按「LLM 可替代性」完美排序</h2>
+    <h2>一 · 跨站点斜率：降幅按「LLM 可替代性」排序</h2>
     <p class="desc">ChatGPT 发布后 13 个月。需要严格形式证明的数学站点几乎无恙；答案最模板化的编程站点跌幅最大。</p>
-    <div class="chart"><canvas id="slopeChart" role="img" aria-label="六站点在ChatGPT前后提问量变化斜率图">fallback</canvas></div>
+    <figure>
+      <img src="figures/fig3_cross_site.png" alt="八个 Stack Exchange 站点在 ChatGPT 发布前后的提问量变化斜率图">
+      <figcaption>横轴左端为 2022Q3（冲击前，统一指数化为 100），右端为 2023Q4（冲击后 13 个月）。</figcaption>
+    </figure>
   </section>
 
   <section>
     <h2>二 · 归因分解：AI 的份额在一年内从 93% 稀释到 10%</h2>
-    <p class="desc">Stack Overflow 累计降幅 = AI 可归因（与数学站点的差额） + 平台级衰亡（对照站点同样经历的）。2023Q1 的份额 114% >100%，是因为对照站点同期反升 2.5%——含义是「若无 LLM 直接替代，SO 本应上升」。</p>
-    <div class="chart"><canvas id="attrChart" role="img" aria-label="Stack Overflow降幅的AI归因分解堆叠条形图">fallback</canvas></div>
-    <div class="finding">「AI 吸干 Stack Overflow（−99%）」的流行叙事是错误归因：后期降幅的主体是连数学站点也同步发生的跨领域衰亡，不能记在「LLM 直接替代编程知识」头上。<b>但注意两种口径的分歧</b>——百分点口径显示归因份额 93%→10%，而对数口径下 SO 相对对照领域的差距从 53.8% 扩大到 91.2%。百分点口径的收敛是 SO 已跌至地板的算术结果，<b>不应解读为 AI 影响消退</b>。</div>
+    <p class="desc">Stack Overflow 累计降幅 = LLM 直接替代（与数学站点的差额） + 平台级衰亡（对照站点同样经历的）。2023Q1 的 114% 是因为对照站点同期反升 2.5%，含义是「若无 LLM 直接替代，SO 本应上升」。</p>
+    <figure>
+      <img src="figures/fig4_attribution.png" alt="Stack Overflow 降幅的 AI 归因分解堆叠条形图与归因份额折线图">
+      <figcaption>左：深色为可归因于 LLM 直接替代的部分，灰色为平台级衰亡。右：归因份额随时间的变化。</figcaption>
+    </figure>
+    <div class="finding">「AI 吸干 Stack Overflow（−99%）」是错误归因：后期降幅的主体是连数学站点也同步发生的跨领域衰亡。<b>但两种口径必须并列</b>——百分点口径显示份额 93%→10%，对数口径下 SO 相对对照领域的差距却从 53.8% 扩大到 91.2%。百分点口径的收敛是 SO 已跌至地板的算术结果，<b>不应解读为 AI 影响消退</b>。</div>
   </section>
 
   <section>
-    <h2>二·五 · 横截面一致性：7 个独立知识领域同时触底、同步收敛</h2>
-    <p class="desc">以数学站点为基准，各知识领域相对数学的超额下降。7 条独立曲线呈现完全相同的时间模式——这是比任何单一系数更硬的证据。</p>
-    <div class="chart" style="height:340px"><canvas id="siteAttChart" role="img" aria-label="七个知识领域相对数学站点的超额下降折线图">fallback</canvas></div>
-    <div class="finding">7 个彼此独立的知识领域全部在 <b>2023Q4 同一时期触底</b>（−22 至 −52 pp）。这种横截面一致性无法由站点特异性因素解释。需要精确解读的是：触底后百分点口径的「收敛」由 SO 跌至地板的算术约束驱动；对数口径下相对差距同期反而从 53.8% 扩大到 91.2%——<b>超额下降在 2023 年内形成，其后绝对崩塌由跨领域衰亡主导，但相对命运的差距并未收窄</b>。</div>
+    <h2>三 · 横截面一致性：7 个独立知识领域同时触底、同步收敛</h2>
+    <p class="desc">以数学站点为基准，各知识领域相对数学的超额下降。这是比任何单一回归系数更硬的证据。</p>
+    <figure>
+      <img src="figures/fig6_site_att.png" alt="七个知识领域相对数学站点的超额下降折线图">
+      <figcaption>七条独立曲线在 2023Q4 同时触底，随后全部收敛。</figcaption>
+    </figure>
   </section>
 
   <section>
-    <h2>三 · 知识领域轨迹（指数化至 2022Q3 = 100，对数刻度）</h2>
+    <h2>四 · 八个站点的原始轨迹</h2>
+    <p class="desc">崩塌是全网性的，数学站点只是滞后约一年，随后同样崩塌。</p>
+    <figure>
+      <img src="figures/fig7_site_trajectories.png" alt="八个 Stack Exchange 站点提问量轨迹图，对数刻度">
+      <figcaption>纵轴为对数刻度，指数化至 2022Q3 = 100。</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>五 · Stack Overflow 站内知识领域轨迹</h2>
     <p class="desc">成熟领域（实线）在冲击后集体跳水；新技术栈（虚线）先因采用曲线上升、后期同样塌陷——证明后期是平台级现象。</p>
-    <div class="chart" style="height:380px"><canvas id="trajChart" role="img" aria-label="十一个知识领域提问量轨迹图">fallback</canvas></div>
+    <figure>
+      <img src="figures/fig2_trajectories.png" alt="Stack Overflow 十一个知识领域提问量轨迹图">
+      <figcaption>纵轴为对数刻度，指数化至 2022Q3 = 100。</figcaption>
+    </figure>
   </section>
 
   <section>
-    <h2>四 · 计量规格汇总</h2>
+    <h2>六 · 门槛效应：语料覆盖度不产生梯度</h2>
+    <p class="desc">先验假设「语料覆盖越充分、被替代越狠」被数据否定。语料覆盖度相差 1,000 倍的成熟领域，跌幅全部落在窄带内。</p>
+    <figure>
+      <img src="figures/fig5_threshold.png" alt="语料覆盖度与降幅的散点图及组内回归拟合">
+      <figcaption>左：各领域降幅对历史语料量（对数刻度）作图，无梯度。右：成熟领域组内回归斜率接近零且不显著。</figcaption>
+    </figure>
+    <div class="finding">替代由「LLM 能力是否跨过该领域的门槛」决定，而非语料密度。一旦跨过门槛（可低至数百条公开问答），追加的语料存量不再带来额外替代——这对「模型自噬」的担忧是重要修正。</div>
+  </section>
+
+  <section>
+    <h2>七 · 事件研究</h2>
+    <p class="desc">左：Stack Overflow 站内 tag 面板；右：以数学站点为基准的跨站点面板。</p>
+    <figure>
+      <img src="figures/fig1_event_study.png" alt="tag 面板事件研究图">
+      <figcaption>加入领域特定二次趋势后，处理强度梯度消失。</figcaption>
+    </figure>
+    <figure style="margin-top:1rem">
+      <img src="figures/fig8_event_study_none.png" alt="跨站点面板事件研究图">
+      <figcaption>跨站点面板事件研究（以 Mathematics 为 numeraire）。</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>八 · 计量规格汇总</h2>
     <p class="desc">β 解释：语料覆盖度每 +1 标准差，处理后的提问量变化。加入领域特定二次趋势后梯度消失——先验假设被数据否定。</p>
-    <table id="specTable">
+    <table>
       <thead><tr><th>样本</th><th>规格</th><th style="text-align:right">β</th><th style="text-align:right">p 值</th><th>判定</th></tr></thead>
       <tbody>
         <tr><td>全部 11 tag</td><td>TWFE，无趋势</td><td class="num">−1.957</td><td class="num">&lt;0.001</td><td><span class="tag neg">虚假梯度（被采用曲线污染）</span></td></tr>
@@ -104,113 +148,16 @@
         <tr><td>全部 11 tag</td><td>+ tag 二次趋势</td><td class="num">−0.443</td><td class="num">0.220</td><td><span class="tag pos">梯度消失</span></td></tr>
         <tr><td>全部 11 tag</td><td>PPML + 二次趋势</td><td class="num">−0.189</td><td class="num">0.310</td><td><span class="tag pos">梯度消失</span></td></tr>
         <tr><td>MATURE 6 tag</td><td>全部规格</td><td class="num">≈ 0</td><td class="num">0.28–0.92</td><td><span class="tag pos">组内无梯度</span></td></tr>
-        <tr><td>全部 11 tag</td><td>伪处理安慰剂（前移2期）</td><td class="num">+0.010</td><td class="num">0.980</td><td><span class="tag pos">通过</span></td></tr>
+        <tr><td>全部 11 tag</td><td>伪处理安慰剂（前移 2 期）</td><td class="num">+0.010</td><td class="num">0.980</td><td><span class="tag pos">通过</span></td></tr>
       </tbody>
     </table>
-    <div class="finding">真实的图景是<b>门槛效应</b>：语料覆盖度相差 1,000 倍的成熟领域，跌幅全部落在 −30% 至 −45% 的窄带。知识领域只要在训练语料中跨过极低的门槛，之后追加的语料存量不产生任何额外替代——对「模型自噬渐进加深」的担忧是一次重要修正。</div>
   </section>
 
-  <footer>数据源：Stack Exchange REST API v2.3（实时采集、全量缓存） · 方法：TWFE / PPML / wild cluster bootstrap / DiD ·
-  复现：<code>python src/collect.py --plan tags && python src/analyze.py && python src/figures.py</code></footer>
+  <footer>数据源：Stack Exchange REST API v2.3（实时采集、全量缓存） ·
+  方法：TWFE / PPML / wild cluster bootstrap / DiD ·
+  复现：<code>make all</code> ·
+  <a href="interactive.html">交互版看板（需加载 Chart.js）</a>
+  </footer>
 </div>
-
-<script>
-if (typeof Chart === "undefined") {
-  document.querySelectorAll('.chart').forEach(function (el) {
-    el.innerHTML = '<p style="padding:1rem;font-size:.85rem;color:#5F5E5A;'
-      + 'background:#F1EFE8;border-radius:8px;line-height:1.6">'
-      + '图表库未能加载（通常是网络限制导致脚本被拦截）。'
-      + '完整图表请查看 <a href="report.md" style="color:#185FA5">report.md</a>，'
-      + '其中包含全部 9 张图的静态版本。</p>';
-  });
-  throw new Error("Chart.js unavailable - static fallback shown");
-}
-
-const treat='#A32D2D', ctrl='#185FA5', gray='#888780', acc='#0F6E56';
-Chart.defaults.font.family='-apple-system,"PingFang SC","Microsoft YaHei",sans-serif';
-Chart.defaults.color='#5F5E5A';
-
-const sites=[
- {s:'stackoverflow', pre:326522, post:144895, c:treat},
- {s:'askubuntu',     pre:4912,   post:2870,   c:ctrl},
- {s:'stats',         pre:3681,   post:2505,   c:ctrl},
- {s:'english',       pre:1018,   post:707,    c:ctrl},
- {s:'superuser',     pre:4921,   post:3629,   c:ctrl},
- {s:'math',          pre:20308,  post:19522,  c:acc},
-];
-new Chart(document.getElementById('slopeChart'),{
- type:'line',
- data:{datasets:sites.map(d=>({
-   label:d.s, data:[{x:0,y:100},{x:1,y:d.post/d.pre*100}],
-   borderColor:d.c, backgroundColor:d.c, borderWidth:d.s==='stackoverflow'?2.4:1.4,
-   pointRadius:d.s==='stackoverflow'?4:3, tension:0
- }))},
- options:{responsive:true,maintainAspectRatio:false,
-  scales:{x:{type:'linear',min:-.1,max:1.9,ticks:{stepSize:1,callback:v=>v===0?'2022Q3\n(冲击前)':v===1?'2023Q4\n(+13个月)':''}},
-          y:{title:{display:true,text:'提问量（2022Q3=100）'}}},
-  plugins:{legend:{display:false},
-   tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y.toFixed(1)} (${((c.parsed.y-100)).toFixed(1)}%)`}}}}
-});
-
-const attr={q:['2023Q1','2023Q4','2024Q4','2025Q4','2026Q3'],
- ai:[-20.0,-51.7,-41.5,-21.0,-10.1], plat:[2.5,-3.9,-39.5,-74.5,-89.0],
- share:[114.3,93.0,51.3,22.0,10.2]};
-new Chart(document.getElementById('attrChart'),{
- type:'bar',
- data:{labels:attr.q, datasets:[
-  {label:'AI 可归因（DiD vs 数学站点）', data:attr.ai, backgroundColor:treat, stack:'s', barPercentage:.55},
-  {label:'平台级衰亡（对照组同步发生）', data:attr.plat, backgroundColor:'#B4B2A9', stack:'s', barPercentage:.55},
-  {type:'line',label:'AI 归因份额 (%)', data:attr.share, borderColor:treat, backgroundColor:treat,
-   yAxisID:'y2', tension:.3, pointRadius:4, borderWidth:2}]},
- options:{responsive:true,maintainAspectRatio:false,
-  scales:{y:{title:{display:true,text:'相对 2022Q3 的变化（百分点）'},stacked:true},
-          y2:{position:'right',min:0,max:120,grid:{display:false},title:{display:true,text:'AI 份额 (%)'}},
-          x:{stacked:true}},
-  plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:11}}}}}}
-});
-
-const siteAtt={q:['2023Q1','2023Q4','2024Q4','2025Q4','2026Q3'],series:{
- stackoverflow:[-20.0,-51.8,-41.5,-21.0,-10.1],
- salesforce:[-8.6,-41.5,-31.1,-12.3,-6.0],
- askubuntu:[-20.4,-37.7,-9.9,0.5,2.3],
- serverfault:[-20.5,-26.0,-19.9,-4.7,-4.5],
- stats:[-3.8,-28.1,-20.6,-8.1,-2.7],
- english:[-11.9,-26.7,-19.8,-2.0,0.6],
- superuser:[-1.9,-22.4,-11.4,-2.7,-3.2]}};
-new Chart(document.getElementById('siteAttChart'),{
- type:'line',
- data:{labels:siteAtt.q,datasets:Object.entries(siteAtt.series).map(([s,v])=>({
-   label:s,data:v,borderColor:s==='stackoverflow'?treat:ctrl,backgroundColor:s==='stackoverflow'?treat:ctrl,
-   borderWidth:s==='stackoverflow'?2.6:1.2,pointRadius:s==='stackoverflow'?4:2.5,tension:.25}))},
- options:{responsive:true,maintainAspectRatio:false,
-  scales:{y:{title:{display:true,text:'相对数学站点的超额下降（百分点）'}}},
-  plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:10},usePointStyle:true}}}}});
-
-const traj={rel:[-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
- series:[
-  {label:'python',c:treat,dash:[],base:54170, v:[67626,65134,58906,58349,59106,57338,54170,52563,40329,28314,23954,19179,18057,15271,10602,7375,5814,3595,2132,1753,1159,692,389]},
-  {label:'javascript',c:treat,dash:[],base:37219, v:[48550,46296,43428,39970,39919,38892,37219,33120,26601,18314,15434,11678,11173,8485,5779,3863,2938,1546,877,709,454,360,191]},
-  {label:'java',c:treat,dash:[],base:15536, v:[24116,23274,20134,19475,18710,18290,15536,15266,13053,10051,8747,7168,6626,5178,3276,3171,2397,1502,838,795,499,347,171]},
-  {label:'c#',c:treat,dash:[],base:15544, v:[18245,17115,15242,15768,15866,15863,15544,14715,12948,9677,8937,7445,6813,5940,4649,3434,2635,1448,955,817,477,331,170]},
-  {label:'php',c:treat,dash:[],base:8895, v:[13821,12574,11392,10236,9505,9595,8895,7763,6347,4653,4249,3314,3255,2619,1847,1374,1033,572,284,250,158,110,56]},
-  {label:'sql',c:treat,dash:[],base:8963, v:[11350,11517,10566,9693,9688,9610,8963,8584,6971,4749,3724,3156,2944,2390,1760,1186,939,539,251,186,167,86,66]},
-  {label:'sveltekit',c:ctrl,dash:[6,4],base:240, v:[4,68,105,130,190,227,240,265,397,248,279,173,170,143,111,104,69,28,18,12,9,4,3]},
-  {label:'bun',c:ctrl,dash:[6,4],base:27, v:[0,0,0,0,0,1,27,9,3,2,55,37,24,32,18,22,12,7,7,6,4,2,0]},
-  {label:'htmx',c:ctrl,dash:[6,4],base:36, v:[17,15,9,30,37,41,36,33,37,37,49,58,66,37,36,20,27,3,6,2,3,1,0]},
-  {label:'langchain',c:acc,dash:[],base:0, v:[0,1,0,0,0,0,0,0,11,248,386,315,277,266,156,83,88,50,32,29,17,9,2]},
-  {label:'openai-api',c:acc,dash:[],base:39, v:[4,4,7,13,22,27,39,71,298,456,374,326,277,207,139,79,71,43,20,27,11,5,1]},
- ]};
-new Chart(document.getElementById('trajChart'),{
- type:'line',
- data:{labels:traj.rel, datasets:traj.series.map(s=>({
-   label:s.label, data:s.v.map(v=>v/s.base*100),
-   borderColor:s.c, backgroundColor:s.c,
-   borderDash:s.dash, borderWidth:s.dash.length?1.3:1.8,
-   pointRadius:0, tension:.25}))},
- options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'nearest',intersect:false},
-  scales:{x:{title:{display:true,text:'相对 ChatGPT 发布的季度数（0 = 2022Q4）'}},
-          y:{type:'logarithmic',title:{display:true,text:'提问量（2022Q3=100，对数刻度）'}}},
-  plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:10},usePointStyle:true}}}}});
-</script>
 </body>
 </html>
