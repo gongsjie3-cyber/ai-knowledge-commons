@@ -40,17 +40,28 @@
 ```bash
 pip install -r requirements.txt
 
-# 1. 采集（有缓存即跳过，不消耗配额；无 key 每天 300 请求）
-python src/collect.py --plan tags     # SO 站内 tag 面板（已缓存）
-python src/collect.py --plan sites    # 跨站点面板（需次日配额或注册 key）
-
-# 2. 验证 + 分析 + 成图
-python src/verify_sitewide.py
-python src/analyze.py
-python src/figures.py
+make all        # 一步跑完：采集 → 验证 → 站内分析 → 跨站分析 → 成图
 ```
 
-配额说明：无 key 300 请求/天/IP；在 https://stackapps.com/apps/oauth/register 免费注册后设 `SE_API_KEY`，提升至 3000/天，`--plan all` 一次跑完。
+或分步执行：
+
+```bash
+# 1. 采集（命中缓存即跳过，不重复消耗配额）
+python src/collect.py --plan tags       # 站内 tag 面板（已缓存）
+python src/collect.py --plan sites      # 跨站点面板（已缓存）
+
+# 2. 验证 + 分析 + 成图
+python src/verify_sitewide.py           # 排除删帖/重打标签的技术假象
+python src/analyze.py                   # 站内 tag 面板
+python src/analyze_sites.py             # 跨站点面板
+python src/figures.py                   # fig1–fig5
+python src/figures_sites.py             # fig6–fig8
+
+# 3. 发布前数字审计（可选）
+python src/audit.py                     # 用原始数据重算每条公开断言
+```
+
+配额说明：无 key 300 请求/天/IP；在 https://stackapps.com/apps/oauth/register 免费注册后设 `SE_API_KEY`（写入 `.env`），提升至 3000/天，`--plan all` 一次跑完。`data/raw/` 中缓存了全部 API 原始响应，重跑不消耗配额。
 
 ## 数据与处理强度
 
