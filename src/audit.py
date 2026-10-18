@@ -117,9 +117,7 @@ def main():
     print("=" * 78)
     docs = {
         "report": ROOT / "outputs" / "report.md",
-        "resume": ROOT / "resume" / "project_description.md",
         "readme": ROOT / "README.md",
-        "deploy": ROOT / "DEPLOY.md",
     }
     pats = {
         "93%": r"93(\.0)?%",

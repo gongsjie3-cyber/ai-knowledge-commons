@@ -120,8 +120,8 @@ if (typeof Chart === "undefined") {
     el.innerHTML = '<p style="padding:1rem;font-size:.85rem;color:#5F5E5A;'
       + 'background:#F1EFE8;border-radius:8px;line-height:1.6">'
       + '图表库未能加载（通常是网络限制导致脚本被拦截）。'
-      + '完整图表请查看 <a href="report.md" style="color:#185FA5">report.md</a>，'
-      + '其中包含全部 9 张图的静态版本。</p>';
+      + '完整图表请查看 <a href="index.html" style="color:#185FA5">静态图表版</a>，'
+      + '其中包含 fig1–fig8 的图片版本。</p>';
   });
   throw new Error("Chart.js unavailable - static fallback shown");
 }
@@ -166,7 +166,7 @@ new Chart(document.getElementById('attrChart'),{
   scales:{y:{title:{display:true,text:'相对 2022Q3 的变化（百分点）'},stacked:true},
           y2:{position:'right',min:0,max:120,grid:{display:false},title:{display:true,text:'AI 份额 (%)'}},
           x:{stacked:true}},
-  plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:11}}}}}}
+  plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:11}}}}}
 });
 
 const siteAtt={q:['2023Q1','2023Q4','2024Q4','2025Q4','2026Q3'],series:{
